@@ -1,0 +1,7 @@
+{
+  "name": "lista-usuario-extra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

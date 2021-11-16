@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Usuarios
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+
+      <ion-button (click)="getAll()">TODOS</ion-button>
+      <ion-button  (click)="getMan()">
+        <ion-icon name="man"></ion-icon>
+      </ion-button>
+      <ion-button (click)="getWoman()">
+        <ion-icon name="woman" ></ion-icon>
+      </ion-button>
+
+    <p>Entre
+      <!--el evento click es para comprobar las variables de rangos funcionan correctamente-->
+      <input (click)="mostrar()" id="number" type="number" [(ngModel)]="rangoMin" min="18" max={{rangoMax-1}} /> &nbsp; y &nbsp;
+      <input (click)="mostrar()" id="number" type="number" [(ngModel)]="rangoMax" min={{rangoMin+1}} max="100" />
+      &nbsp; años
+    </p>
+
+    <ion-list *ngFor="let u of userService.users">
+      <ion-item *ngIf = "(((optionGender === 1) && (u.gender==='Male'))||
+                         ((optionGender === 2) && (u.gender==='Female'))||
+                         ((optionGender === 3))) &&
+                         ((u.age >= rangoMin) && (u.age <= rangoMax))">
+        <ion-avatar slot="start">
+          <img src="../../assets/img/{{u.image}}">
+        </ion-avatar>
+        <div>
+          <p>{{u.fullName}}</p>
+          <p>{{ u.userName }}</p>
+          <p class="descripcion">Tiene {{u.age}} años y vive en {{u.city}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
